@@ -21,7 +21,9 @@ case $opcao in
 
    sudo groupadd $grupo
 
-   echo "Operacao concluida!";;
+   echo "Operacao concluida!"
+
+	;;
 
 2) clear
    echo "Digite nome do grupo que deseja mudar: "
@@ -32,7 +34,9 @@ case $opcao in
 
    groupmod -n $nome $grupo
 
-   echo "Operacao concluida!";;
+   echo "Operacao concluida!"
+
+	;;
 
 3) clear
    echo "Digite o nome do usuario: "
@@ -40,13 +44,89 @@ case $opcao in
 
    sudo adduser $usuario
 
-   echo "Operacao concluida!";;
+   echo "Operacao concluida!"
 
-4) echo "quatro";;
+	;;
 
-5) echo "cinco";;
+4) clear
+   echo "Digite o nome do arquivo/diretorio desejado: "
+   read arq
 
-6) echo "seis";;
+   echo "Digite o nome do novo usuario dono deste arquivo/diretorio: "
+   read nome
+
+   sudo chown $nome -r $arq
+
+   echo "Operacao concluida!"
+
+	;;
+
+5) clear
+   echo "Digite o nome do arquivo/diretorio desejado: "
+   read arq
+
+   echo "Digite o nome do novo grupo dono deste arquivo/diretorio: "
+   read grupo
+
+   sudo chgrp $grupo -r $arq
+
+   echo "Operacao concluida!"
+
+	;;
+
+6) clear
+   echo "Modificacao de permissoes"
+   echo
+   echo "Digite o nome do arquivo/pasta: "
+   echo
+
+   read nome
+
+   clear
+   echo "Digite a opcao desejada para o dono: "
+   echo
+   echo "0. Nenhuma permissao"
+   echo "1. Execucao"
+   echo "2. Escrita"
+   echo "3. Escrita e execucao"
+   echo "4. Leitura"
+   echo "5. Leitura e execucao"
+   echo "6. Leitura e escrita"
+   echo "7. Leitura, escrita e execucao" 
+
+   read ownr
+
+   clear
+   echo "Digite a opcao desejada para o grupo: "
+   echo
+   echo "0. Nenhuma permissao"
+   echo "1. Execucao"
+   echo "2. Escrita"
+   echo "3. Escrita e execucao"
+   echo "4. Leitura"
+   echo "5. Leitura e execucao"
+   echo "6. Leitura e escrita"
+   echo "7. Leitura, escrita e execucao" 
+
+   read grup
+
+   clear
+   echo "Digite a opcao desejada para os outros: "
+   echo
+   echo "0. Nenhuma permissao"
+   echo "1. Execucao"
+   echo "2. Escrita"
+   echo "3. Escrita e execucao"
+   echo "4. Leitura"
+   echo "5. Leitura e execucao"
+   echo "6. Leitura e escrita"
+   echo "7. Leitura, escrita e execucao" 
+
+   read outr
+
+   chmod $ownr$grup$outr $nome
+
+	;;
 
 *) echo "Opcao invalida!";;
 esac
